@@ -10,17 +10,15 @@ using Newtonsoft.Json;
 
 namespace Сhat_bot_lab3
 {
-    class Bot
-    {
-        public class Bot : AbstChatBot
+        public class Bot : AbstractChatBot
         {
             static string userName; // имя пользователя
             string path; // путь к файлу с историей сообщений
             List<string> history = new List<string>(); // хранение истории
 
             List<Regex> regecies = new List<Regex>
-        {
-            new Regex(@"привет\s?\,?\s?б{1}о{1}т{1}"),
+            {
+            new Regex(@"привет"),
             new Regex(@"(?:который час\??|сколько времени\??)"),
             new Regex(@"(?:какое сегодня число\??|число\??)"),
             new Regex(@"как дела\??"),
@@ -29,8 +27,9 @@ namespace Сhat_bot_lab3
             new Regex(@"(?:раздели(\s)?(\d+)(\s)?на(\s)?(\d+))"),
             new Regex(@"(?:сложи(\s)?(\d+)(\s)?и(\s)?(\d+))"),
             new Regex(@"(?:вычти(\s)?(\d+)(\s)?из(\s)?(\d+))"),
-            new Regex(@"погода")
-        };
+            new Regex(@"погода"),
+            new Regex(@"что делать на карантине\??"),
+            };
 
             Func<string, string> funcBuf; //буфер
 
@@ -45,7 +44,8 @@ namespace Сhat_bot_lab3
                 DivPls,
                 PlusPls,
                 SubPls,
-                WeatherPls
+                WeatherPls,
+                Quarantine
             };
 
             static string HelloBot(string question)
@@ -158,6 +158,17 @@ namespace Сhat_bot_lab3
                 return "Погода в городе " + infoWeather[0] + " " + infoWeather[1] + " °C"
                     + ". Ветер " + infoWeather[2] + " м/c";
             }
+            static string Quarantine(string question)
+            {
+                Random rnd = new Random();
+                int value = rnd.Next();
+                if (value % 2 == 0)
+                    return "Вы можете: почитать книги, посмотреть фильм, посмотреть видео уроки и заняся\r\nВажно мыть руки и не трогать лицо!!! \r\nБудте здоровы :)";
+                else
+                {
+                    return "Вы можете сделать много хороших вещей\r\n1.Генеральная уборка \r\n2.Занятся самообучекнием\r\n3.Сделать давно забытые дела(разбор старых фото)\r\n4.Приготовить что то вкусное\r\nВажно уметь правильно расределить время и если вам плохо обратитесь к врачу!!!";
+                }
+            }
 
             public Bot()
             {
@@ -268,7 +279,6 @@ namespace Сhat_bot_lab3
             }
 
         }
-    }
+}
 
-}
-}
+

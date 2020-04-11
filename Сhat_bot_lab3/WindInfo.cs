@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Сhat_bot_lab3
 {
-    public abstract class AbstractChatBot
+    class WindInfo
     {
-        public abstract string Answ(string userQuestion);
+        public double Speed { get; set; }
     }
 }

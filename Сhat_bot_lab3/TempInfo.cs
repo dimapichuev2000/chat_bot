@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Сhat_bot_lab3
 {
-    public abstract class AbstractChatBot
+    class TempInfo
     {
-        public abstract string Answ(string userQuestion);
+        public float Temp { get; set; }
     }
 }

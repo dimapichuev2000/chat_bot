@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace Сhat_bot_lab3
 {
-    public abstract class AbstractChatBot
+    class WeatherResponse
     {
-        public abstract string Answ(string userQuestion);
+        public TempInfo Main { get; set; }
+
+        public string Name { get; set; }
+
+        public WindInfo Wind { get; set; }
     }
 }
